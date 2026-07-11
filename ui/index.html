@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StretchVAL</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <div class="brand">
+                <img class="brand-icon" src="../assets/branding/stretchval-icon.png"
+                     alt="StretchVAL" onerror="this.style.display='none'">
+                <h1>Stretch<span class="accent">VAL</span></h1>
+            </div>
+            <div class="topbar-right">
+                <button id="btnRefresh" class="ghost icon-btn" title="Monitörleri yeniden tara">↺</button>
+            </div>
+        </header>
+
+        <!-- ADIM 1: Monitör seçimi -->
+        <section id="step-monitors" class="step">
+            <div class="step-head">
+                <span class="badge">1</span>
+                <h2>Değiştirmek istediğin ekranı seç</h2>
+            </div>
+            <div id="monitorLayout" class="monitor-layout"></div>
+        </section>
+
+        <!-- ADIM 2: Çözünürlük (+ Hz) -->
+        <section id="step-res" class="step disabled">
+            <div class="step-head">
+                <span class="badge">2</span>
+                <h2>Çözünürlük seç</h2>
+            </div>
+
+            <!-- Aspect filtre çipleri: tıkla filtrele, tekrar tıkla hepsini göster -->
+            <div id="aspectTabs" class="filter-chips"></div>
+
+            <div class="res-panel">
+                <div id="resList" class="res-listbox" tabindex="0"></div>
+
+                <div class="hz-panel">
+                    <label for="hzSelect">Yenileme hızı</label>
+                    <div class="select-wrap">
+                        <select id="hzSelect" disabled></select>
+                    </div>
+                    <p class="hz-note">Seçtiğin çözünürlükte desteklenen Hz'ler</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="actionbar">
+            <div id="selectionSummary" class="summary">Bir monitör seç…</div>
+            <div class="actions">
+                <button id="btnRevert" class="ghost" disabled>↩ Hepsini geri al</button>
+                <div class="apply-wrap">
+                    <button id="btnApply" class="primary" disabled>Devam et ▾</button>
+                    <div class="apply-menu" id="applyMenu" hidden></div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Onay / geri sayim modal -->
+    <div id="confirmModal" class="modal-backdrop" hidden>
+        <div class="modal">
+            <h3 id="modalTitle">Stretched uygulandı ✓</h3>
+            <p id="modalText"></p>
+            <div class="modal-actions">
+                <button id="modalRevert" class="ghost">Geri al</button>
+                <button id="modalClose" class="secondary">Kapat</button>
+                <button id="modalKeep" class="primary">Valorant'ı aç</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Yeni hesap sihirbazi -->
+    <div id="newAccountModal" class="modal-backdrop" hidden>
+        <div class="modal wizard">
+            <h3 id="waTitle">🆕 Yeni hesap kurulumu</h3>
+            <div class="wa-body">
+                <div class="wa-spinner" id="waSpinner"></div>
+                <div class="wa-status" id="waStatus">Valorant açılıyor…</div>
+                <div class="wa-count" id="waCount" hidden></div>
+            </div>
+            <div class="modal-actions">
+                <button id="waPrimary" class="primary" hidden></button>
+                <button id="waCancel" class="ghost">Vazgeç</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profili kaydet modal -->
+    <div id="saveProfileModal" class="modal-backdrop" hidden>
+        <div class="modal">
+            <h3>Profili kaydet</h3>
+            <p>Bu hesabı profil olarak kaydet; farklı hesaba geçince üstteki menüden seçip tekrar uygulayabilirsin.</p>
+            <div class="puuid-chip" id="saveProfilePuuid"></div>
+            <input id="profileNameInput" class="text-input" type="text" maxlength="30"
+                   placeholder="Takma ad (ör. Ana hesabım)" autocomplete="off" />
+            <div class="modal-actions">
+                <button id="saveProfileSkip" class="ghost">Şimdi değil</button>
+                <button id="saveProfileConfirm" class="primary">Kaydet</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Valorant acik uyarisi -->
+    <div id="warnModal" class="modal-backdrop" hidden>
+        <div class="modal">
+            <h3>⚠️ Valorant açık</h3>
+            <p>Ayarların bozulmaması için önce <b>Valorant'ı tamamen kapat</b> (ana menüden çık), sonra tekrar dene. Oyun açıkken yapılan değişikliği Valorant çıkışta geri yazar.</p>
+            <div class="modal-actions">
+                <button id="warnOk" class="primary">Anladım</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" hidden></div>
+
+    <!-- Sirayla yuklenir; hepsi ayni global scope'u paylasir -->
+    <script src="js/core.js"></script>
+    <script src="js/monitors.js"></script>
+    <script src="js/apply.js"></script>
+    <script src="js/profiles.js"></script>
+    <script src="js/wizard.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
