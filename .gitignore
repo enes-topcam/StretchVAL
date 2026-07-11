@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# PyInstaller (.exe ciktilari repoya girmez; Release'e yuklenir)
+build/
+dist/
+*.spec
+
+# IDE / OS / araclar
+.vscode/
+.idea/
+.claude/
+Thumbs.db
+desktop.ini

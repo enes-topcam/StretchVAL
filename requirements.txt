@@ -1,0 +1,6 @@
+# Calisma zamani bagimliliklari
+pywebview>=6.2,<7      # WebView2 tabanli pencere + JS<->Python kopru
+pythonnet>=3.0         # pywebview edgechromium (WebView2) backend'i icin gerekli
+
+# Sadece .exe paketlemek icin (calistirmak icin gerekmez):
+# pip install pyinstaller

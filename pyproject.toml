@@ -1,0 +1,30 @@
+[project]
+name = "stretchval"
+version = "1.0.0"
+description = "StretchVAL - Valorant için masaüstü çözünürlüğünü ve GameUserSettings.ini'yi düzenleyerek true stretched yapan basit Windows uygulaması."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "whoop" }]
+keywords = ["valorant", "stretched", "resolution", "windows"]
+
+# Calisma zamani bagimliliklari (ayrica requirements.txt'te de var)
+dependencies = [
+    "pywebview>=6.2,<7",
+    "pythonnet>=3.0",
+]
+
+[project.optional-dependencies]
+build = ["pyinstaller>=6"]   # .exe uretmek icin
+dev = ["pytest>=8"]          # testler icin
+
+[project.urls]
+Homepage = "https://github.com/<kullanici>/valorant-true-stretched"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
